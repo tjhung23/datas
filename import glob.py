@@ -99,18 +99,6 @@ for filename in result:
                         
                         # print(Noidung)
 df = pd.DataFrame(lines)
-df['EF'] = df['EF'].apply(lambda x: x.split(" ", 1)[0])
-new = df['Bank'].str.split("-", n = 1, expand = True)
-df['Bank'] = new[0]
-df['Name'] = df['Name'].str.strip()
-df['Bank'] = df['Bank'].str.strip().replace("Người đề","").replace("'","")
-df['STK'] = df['STK'].str.strip()
-df['STK'] = df['STK'].str.replace('-','')
-df['STK'] = df['STK'].str.replace(' ','')
-df['STK'] = df['STK'].str.replace('.','')
-# df['Noidung'] = df['Noidung'].str.strip()
-df['Bank'] = df['Bank'].replace(['ABBank','ACB', 'Agribank', 'Techcombank', 'SHB', 'Deutsche Bank AG, Vietnam', 'Sacombank', 'Vietcombank', 'Tien Phong Bank', 'Vietinbank', 'HDBank',  'Nam A Bank','Citibank','Maritime Bank','Dong A Bank','LienVietPostBank','Viet Capital Bank','VIBank','Ngân hàng Mizuho CN TP Hồ Chí Minh','KienLongBank','Eximbank','Viet A Bank','BaoViet Bank','SeABank'], ['ABBANK', 'ACB', 'Agribank','TECHCOMBANK','SHB','DEUTSCHE BANK','Sacombank','Vietcombank','TP Bank','Vietinbank','HD Bank','Nam A','Citi HCM','Maritimebank','Dong A','LPB','BAN VIET','VIB','MIZUHO HCM','Kien Long Bank','EXIM BANK','Viet A','BAO VIET BANK','Sea Bank'])
-df.insert(9, 'STT', range(1, 1 + len(df)))
 df.to_excel(r'NEF.xlsx',index=False)
 print('done')
 
